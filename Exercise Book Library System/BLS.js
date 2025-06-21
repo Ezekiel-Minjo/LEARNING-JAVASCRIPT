@@ -70,7 +70,7 @@ class EBook extends Publication {
 }
 
 // step 5: Create instances of each class
-console.log("=== Book Library System ===\n");
+// console.log("=== Book Library System ===\n");
 
 // Create a Magazine instance
 const book1 = new Book("JavaScript Guide", "Kyle", "2020", "123456789");
@@ -84,13 +84,3 @@ magazine1.print();
 const ebook1 = new EBook("Learning Python", "Alice Smith", "2023", "15.2MB");
 ebook1.print();
 
-console.log("\n=== Additional Example ===\n");
-
-// Create more instances to show variety
-const book2 = new Book("Advanced CSS", "Maria Garcia", "2021", "987654321");
-const magazine2 = new Magazine("Science Today", "Dr. Robert Lee", "2024", "Volume 12");
-const ebook2 = new EBook("Web Development", "John Doe", "2022", "8.7MB");
-
-book2.print();
-magazine2.print();
-ebook2.print();
