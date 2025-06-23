@@ -16,3 +16,4 @@ const myIterator = {
 for (let num of myIterator) {
     console.log(`for...of got: ${num}`);
 }
+// Symbol.iterator makes this object iterable with for...of and ...
