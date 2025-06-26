@@ -1,8 +1,9 @@
 const friends = ['Michael', 'Steven', 'Peter'];
+friends.push('Minjo');
 console.log(friends);
 
 const y = new Array(1991, 2001, 2025, 2020);
-console.log(years);
+console.log(y);
 
 console.log(friends[0]);
 console.log(friends[1]);
