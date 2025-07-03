@@ -29,3 +29,10 @@ console.log(main, secondary);
 // console.log(restaurant.order(2, 0));
 const [starter, mainCourse] = restaurant.order(2, 0);
 console.log(starter, mainCourse);
+
+// nested array
+const nested = [2, 4, [5, 6]];
+// const [i, , j] = nested;
+// console.log(i, j);
+const [i, , [j, k]] = nested;
+console.log(i, j, k);
