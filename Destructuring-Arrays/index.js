@@ -1,3 +1,4 @@
+'use strict';
 const books = [
   {
     title: 'Algorithms',
@@ -223,8 +224,8 @@ const books = [
   },
 ];
 
-// const [firstBook, secondBook] = books;
-// console.log(books);
+const [firstBook, secondBook] = books;
+console.log(books);
 
 const [, , thirdBook] = books;
 console.log(books);
@@ -234,3 +235,7 @@ const ratings = [
 ];
 const [[, rating], [, ratingsCount]] = ratings;
 console.log(ratings);
+
+const ratingStars = [63405, 1808];
+const [fiveStarRatings, oneStarRatings, threeStarRatings = 0] = ratingStars;
+console.log(ratingStars);
