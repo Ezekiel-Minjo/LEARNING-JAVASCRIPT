@@ -27,3 +27,14 @@ const restaurant = {
 // object distructuring
 const { name, openingHours, categories } = restaurant;
 console.log(name, openingHours, categories);
+
+const {
+  name: restaurantName,
+  openingHours: hours,
+  categories: tags,
+} = restaurant;
+console.log(restaurantName, hours, tags);
+// usefull for 3rd party data
+
+const { menu = [], starterMenu: starters = [] } = restaurant;
+console.log(menu, starters);
