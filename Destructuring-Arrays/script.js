@@ -247,3 +247,5 @@ spellWord('JavaScript');
 function spellWord(word) {
   console.log(...word);
 }
+
+const [mainKeyword, ...rest] = books[0].keywords;
