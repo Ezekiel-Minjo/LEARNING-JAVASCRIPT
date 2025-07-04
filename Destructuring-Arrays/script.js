@@ -241,3 +241,9 @@ const [fiveStarRatings, oneStarRatings, threeStarRatings = 0] = ratingStars;
 console.log('4th output: ', fiveStarRatings, oneStarRatings, threeStarRatings);
 
 const bookAuthors = [...books[0].author, ...books[1].author];
+
+spellWord('JavaScript');
+
+function spellWord(word) {
+  console.log(...word);
+}
