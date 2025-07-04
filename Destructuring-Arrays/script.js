@@ -239,3 +239,5 @@ console.log('3rd output:', rating, ratingsCount);
 const ratingStars = [63405, 1808];
 const [fiveStarRatings, oneStarRatings, threeStarRatings = 0] = ratingStars;
 console.log('4th output: ', fiveStarRatings, oneStarRatings, threeStarRatings);
+
+const bookAuthors = [...books[0].author, ...books[1].author];
