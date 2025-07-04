@@ -257,3 +257,8 @@ printBookAuthorsCount('Algorithms', 'Robert Sedgewick', 'Kevin Wayne');
 function printBookAuthorsCount(title, ...authors) {
   console.log(`The book "${title}" has ${authors.length} authors`);
 }
+
+hasExamplesInJava(books[0]);
+function hasExamplesInJava(book) {
+  return book.programmingLanguage === 'Java' || 'no data available';
+}
