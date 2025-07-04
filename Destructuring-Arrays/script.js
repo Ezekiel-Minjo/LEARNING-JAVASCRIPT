@@ -249,3 +249,5 @@ function spellWord(word) {
 }
 
 const [mainKeyword, ...rest] = books[0].keywords;
+
+const { publisher: bookPublisher, ...restOfTheBook } = books[1];
