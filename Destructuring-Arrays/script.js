@@ -251,3 +251,9 @@ function spellWord(word) {
 const [mainKeyword, ...rest] = books[0].keywords;
 
 const { publisher: bookPublisher, ...restOfTheBook } = books[1];
+
+printBookAuthorsCount('Algorithms', 'Robert Sedgewick', 'Kevin Wayne');
+
+function printBookAuthorsCount(title, ...authors) {
+  console.log(`The book "${title}" has ${authors.length} authors`);
+}
