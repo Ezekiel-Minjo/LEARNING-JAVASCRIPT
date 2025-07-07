@@ -90,3 +90,21 @@ printGoals(...game.scored);
 // 7.
 team1 < team2 && console.log('Team 1 is more likely to win');
 team1 > team2 && console.log('Team 2 is more likely to win');
+
+// coding challenge #2
+// 1
+for (const [i, el] of game.scored.entries()) {
+  console.log(`Goal ${i + 1} : ${el}`);
+}
+// 2 average odd
+const odds = Object.values(game.odds);
+let average = 0;
+for (const odd of odds) average += odd;
+average /= odds.length;
+console.log(average);
+
+// 3.  print the content of the object to the console
+for (const [team, odd] of Object.entries(game.odds)) {
+  const teamStr = team === 'x' ? 'draw' : `Victory ${game[team]}`;
+  console.log(`Odd of ${teamStr} ${odd}`);
+}
