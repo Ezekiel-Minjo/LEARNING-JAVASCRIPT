@@ -47,3 +47,18 @@ const restaurant = {
     console.log(otherIngredients);
   },
 };
+
+const rest = new Map();
+rest.set('name', 'Classico Italiano');
+rest.set(1, 'Firenze, Italy');
+rest.set(2, 'Lisbon, Portugal');
+// console.log(rest);
+
+// Method chaining
+rest
+  .set('categories', ['Italian', 'Pizzeria', 'Vegetarian'])
+  .set('open', 11)
+  .set('close', 23)
+  .set(true, 'We are open :D')
+  .set(false, 'We are closed :(');
+console.log(rest);
