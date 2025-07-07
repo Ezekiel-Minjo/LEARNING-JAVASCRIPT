@@ -61,4 +61,24 @@ rest
   .set('close', 23)
   .set(true, 'We are open :D')
   .set(false, 'We are closed :(');
+// console.log(rest);
+// get()
+// console.log(rest.get('name'));
+// console.log(rest.get(true));
+// console.log(rest.get(1));
+// boolean
+const time = 21;
+const y = rest.get(time > rest.get('open') && time < rest.get('close'));
+console.log(y);
+// has()
+console.log(rest.has('categories'));
+rest.delete(2);
+// rest.clear();
 console.log(rest);
+console.log(rest.size);
+
+const arr = [1, 2];
+rest.set(arr, 'Test');
+console.log(rest);
+
+console.log(rest.get(arr));
