@@ -40,3 +40,13 @@ console.log(i, j, k);
 // default values
 const [p = 1, q = 1, r = 1] = [8, 9];
 console.log(p, q, r);
+
+// Looping Arrays: The for-of loop
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+
+for (const item of menu) console.log(item);
+for (const [i, el] of menu.entries()) {
+  // console.log(item);
+  console.log(`${i + 1}: ${el}`);
+}
+// console.log([...menu.entries()]);
