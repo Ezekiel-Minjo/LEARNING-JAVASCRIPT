@@ -11,22 +11,21 @@ const restaurant = {
   },
 };
 
-const arr = [2, 3, 4];
-const a = [0];
-const b = [1];
-const c = [2];
+// Destructuring arrays - from the right side.
 
-const [x, y, z] = arr; // distructuring from the right side
-console.log(x, y, z);
-console.log(arr);
+// const [first, second] = restaurant.categories;
+// console.log(first, second);
+// skip elements
+const [first, , third] = restaurant.categories;
+console.log(first, third);
 
+// swap variables
 let [main, , secondary] = restaurant.categories;
 console.log(main, secondary);
-
 [main, secondary] = [secondary, main];
 console.log(main, secondary);
 
-// console.log(restaurant.order(2, 0));
+// Receive 2 return values from one function call
 const [starter, mainCourse] = restaurant.order(2, 0);
 console.log(starter, mainCourse);
 
@@ -34,19 +33,10 @@ console.log(starter, mainCourse);
 const nested = [2, 4, [5, 6]];
 // const [i, , j] = nested;
 // console.log(i, j);
+
 const [i, , [j, k]] = nested;
 console.log(i, j, k);
 
-// default values
+// Default values
 const [p = 1, q = 1, r = 1] = [8, 9];
 console.log(p, q, r);
-
-// Looping Arrays: The for-of loop
-const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
-
-for (const item of menu) console.log(item);
-for (const [i, el] of menu.entries()) {
-  // console.log(item);
-  console.log(`${i + 1}: ${el}`);
-}
-// console.log([...menu.entries()]);
