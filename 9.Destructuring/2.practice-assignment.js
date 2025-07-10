@@ -246,3 +246,39 @@ console.log(rating, ratingsCount);
 const ratingStars = [63405, 1808];
 const [fiveStarRatings, oneStarRatings, threeStarRatings = 0] = ratingStars;
 console.log(fiveStarRatings, oneStarRatings, threeStarRatings);
+
+console.log('=========The Spread Operator==========');
+const bookAuthors = [...books[0].author, ...books[1].author];
+console.log([...books[0].author, ...books[1].author]);
+
+function spellWord(word) {
+  console.log(...word);
+}
+spellWord('JavaScript');
+
+console.log('----------Rest Pattern and Parameters----------');
+const [mainKeyword, ...rest] = books[0].keywords;
+console.log([mainKeyword, rest]);
+
+const { publisher: bookPublisher, ...restOfTheBook } = books[1];
+console.log(bookPublisher, restOfTheBook);
+
+function printBookAuthorsCount(title, ...authors) {
+  console.log(`The book ${title} has ${authors.length} authors`);
+}
+printBookAuthorsCount('Algorithms', 'Robert Sedgewick', 'Kevin Wayne');
+
+console.log('----------Short Circuiting (&& and ||)----------');
+function hasExamplesInJava(book) {
+  return book.programmingLanguage === 'Java' || 'no data available';
+}
+console.log(hasExamplesInJava(books[0]));
+
+for (let i = 0; i < books.length; i++) {
+  books[i].onlineContent &&
+    console.log(`${books[i].title} provides online content`);
+}
+for (let i = 0; i < books.length; i++) {
+  books[i].onlineContent &&
+    console.log(`${books[i].title} provides no data about its online content`);
+}
