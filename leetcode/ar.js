@@ -1,48 +1,32 @@
-function findMedianSortedArrays(nums1, nums2) {
-  if (nums1.length > nums2.length) {
-    [nums1, nums2] = [nums2, nums1];
-  }
+function threeSum(nums) {
+  nums.sort((a, b) => a - b);
+  const res = [];
 
-  let m = nums1.length;
-  let n = nums2.length;
-  let halfLen = Math.floor((m + n + 1) / 2);
+  for (let i = 0; i < nums.length - 2; i++) {
+    if (i > 0 && nums[i] === nums[i - 1]) continue;
 
-  let imin = 0,
-    imax = m;
+    let left = i + 1;
+    let right = nums.length - 1;
 
-  while (imin <= imax) {
-    let i = Math.floor((imin + imax) / 2);
-    let j = halfLen - i;
+    while (left < right) {
+      const sum = nums[i] + nums[left] + nums[right];
 
-    if (i < m && nums2[j - 1] > nums1[i]) {
-      imin = i + 1;
-    } else if (i > 0 && nums1[i - 1] > nums2[j]) {
-      imax = i - 1;
-    } else {
-      let maxLeft = 0;
-      if (i === 0) {
-        maxLeft = nums2[j - 1];
-      } else if (j === 0) {
-        maxLeft = nums1[i - 1];
+      if (sum === 0) {
+        res.push([nums[i], nums[left], nums[right]]);
+
+        while (left < right && nums[left] === nums[left + 1]) left++;
+
+        while (left < right && nums[right] === nums[right - 1]) right--;
+
+        left++;
+        right--;
+      } else if (sum < 0) {
+        left++;
       } else {
-        maxLeft = Math.max(nums1[i - 1], nums2[j - 1]);
+        right--;
       }
-
-      if ((m + n) % 2 === 1) {
-        return maxLeft;
-      }
-
-      let minRight = 0;
-      if (i === m) {
-        minRight = nums2[j];
-      } else if (j === n) {
-        minRight = nums1[i];
-      } else {
-        minRight = Math.min(nums1[i], nums2[j]);
-      }
-
-      return (maxLeft + minRight) / 2;
     }
   }
+
+  return res;
 }
-console.log(findMedianSortedArrays([-1, 0, 1], [2, -1, -4]));
