@@ -67,3 +67,38 @@ rest2.owner &&= '<ANONYMOUS>';
 
 console.log(rest1);
 console.log(rest2);
+
+// const rest1 = {
+//   name: 'Capri',
+//   numGuests: 20,
+// };
+
+// const rest2 = {
+//   name: 'La Piazza',
+//   owner: 'Giovanni Rossi',
+// };
+
+// OR assignment operator (||=)
+// Sets value if current is falsy (0, '', null, undefined, false)
+// rest1.numGuests ||= 10; // stays 20
+// rest2.numGuests ||= 10; // becomes 10
+
+// Nullish assignment operator (??=)
+// Sets value only if current is null or undefined
+// rest1.numGuests ??= 10;
+// rest2.numGuests ??= 10;
+
+// AND assignment operator (&&=)
+// Sets value only if current is truthy
+// rest1.owner &&= '<ANONYMOUS>'; // no owner, does nothing
+// rest2.owner &&= '<ANONYMOUS>'; // changes to '<ANONYMOUS>'
+
+// console.log(rest1);
+// console.log(rest2);
+// ✅ Short summary (all commented):
+
+// ||= → assigns if falsy
+
+// ??= → assigns if null or undefined only
+
+// &&= → assigns if truthy
