@@ -76,3 +76,14 @@ add(...x);
 
 restaurant.orderPizza('Mushrooms', 'onions', 'olives', 'spinach');
 restaurant.orderPizza('Mushrooms');
+
+/**  🟢 Rest Pattern & Rest Parameters — Summary
+ * The rest syntax (...) looks exactly like spread, but does the opposite: it collects elements into an array.
+ * ✅ In arrays (destructuring)
+ * ✅ In objects (destructuring)
+ * ✅ In functions (rest parameters)
+ * You can also mix fixed and rest parameters
+ * ⚡ Spread vs Rest
+ * Spread = expand values into individual elements (where we write values separated by commas).
+ * Rest   = collect multiple elements into one array (where we write variable names separated by commas).
+ **/
