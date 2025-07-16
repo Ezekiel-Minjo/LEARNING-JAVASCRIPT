@@ -70,3 +70,19 @@ if (restaurant.orderPizza) {
 }
 
 restaurant.orderPizza && restaurant.orderPizza('mushroom', 'spinach');
+
+// Logical operators summary (short!)
+
+/*
+OR (||)
+- Returns first truthy value or last if all falsy
+- Use for default values
+Example: const guests = restaurant.numGuests || 10;
+*/
+
+/*
+AND (&&)
+- Returns first falsy value or last if all truthy
+- Use to execute code only if first value is true
+Example: restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
+*/
