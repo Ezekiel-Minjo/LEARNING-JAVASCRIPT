@@ -84,3 +84,41 @@ const restaurantCopy = { ...restaurant };
 restaurantCopy.name = 'Ristorante Roma';
 console.log(restaurantCopy.name);
 console.log(restaurant.name);
+/* 
+✅ Spread Operator Summary
+
+The spread operator (`...`) allows us to expand (unpack) an array or other iterable into individual elements. 
+
+🔹 Usage in arrays:
+- Create new arrays by adding elements before or after an existing array:
+  const arr = [7, 8, 9];
+  const newArr = [1, 2, ...arr]; // [1, 2, 7, 8, 9]
+
+- Copy arrays (shallow copy):
+  const copy = [...arr];
+
+- Merge arrays:
+  const merged = [...arr1, ...arr2];
+
+- Use in function calls to pass array elements as separate arguments:
+  func(...arr);
+
+🔹 Usage with strings:
+- Strings are iterables, so they can also be spread into arrays of characters:
+  const str = 'Jonas';
+  const letters = [...str, ' ', 'S']; // ['J','o','n','a','s',' ','S']
+
+🔹 Spread with objects (since ES2018):
+- Create new objects with additional or overridden properties:
+  const newObj = { ...oldObj, newProp: 'value' };
+
+- Shallow copy objects:
+  const objCopy = { ...obj };
+
+⚠️ Notes:
+- Spread can only be used where multiple comma-separated values are expected (e.g., inside array literals or function argument lists).
+- Spread does not create new variables — it only expands elements.
+- Spread makes it easy to write cleaner, more flexible code without manual loops or hard-coded indices.
+
+💡 Examples in the lesson included copying menus, merging menus, expanding ingredient arrays for functions, and creating object copies or new objects with added properties.
+*/
