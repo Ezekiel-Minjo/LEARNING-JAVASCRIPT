@@ -53,3 +53,24 @@ console.log(guests);
 // Nullish are: null and undefined
 const guestCorrect = restaurant.numGuests ?? 10;
 console.log(guestCorrect);
+
+/* 
+// Nullish Coalescing Operator (??)
+
+// Before: using OR (||) to set default values
+// Problem: 0 or '' are considered falsy, so defaults get used incorrectly
+// Example:
+const guests = restaurant.numGuests || 10; // 0 would give 10, which is wrong
+
+// Solution: Nullish Coalescing Operator (??)
+// Only treats null and undefined as "nullish" (ignores 0 and '')
+// Example:
+const guestsCorrect = restaurant.numGuests ?? 10;
+
+// Works as expected:
+// If numGuests = 0 --> guestsCorrect = 0
+// If numGuests = undefined --> guestsCorrect = 10
+
+// Nullish values: null and undefined only
+// Good when 0 or '' are valid values that we want to keep
+*/
