@@ -235,7 +235,7 @@ capitalizeName('jessica ann smith davis');
 // Result: 'Jessica Ann Smith Davis'
 
 // Padding Methods - Add Characters to String
-const message = 'Go to gate 23';
+// const message = 'Go to gate 23';
 
 // padStart(length, character) - pad at beginning
 message.padStart(25, '+');
@@ -283,10 +283,10 @@ const str = number + ''; // Add empty string - automatic conversion!
 // Split & Join Pattern (Very Common)
 // Pattern: Split → Process → Join
 const text = 'hello world javascript';
-const result = text
-  .split(' ') // ['hello', 'world', 'javascript']
-  .map(word => word[0].toUpperCase() + word.slice(1)) // Process each word
-  .join(' '); // 'Hello World Javascript'
+// const result = text
+//   .split(' ') // ['hello', 'world', 'javascript']
+//   .map(word => word[0].toUpperCase() + word.slice(1)) // Process each word
+//   .join(' '); // 'Hello World Javascript'
 
 //   Method Chaining
 // Chain multiple string methods together
