@@ -155,3 +155,28 @@ console.log(question.get(question.get('correct') === answer));
 console.log([...question]);
 console.log([...question.keys()]);
 console.log([...question.values()]);
+/**
+ * 📘 JavaScript Map Summary
+ * 
+ * ✅ Create Map:
+ * const rest = new Map();
+ * rest.set('name', 'Italiano').set(1, 'Firenze').set(true, 'Open');
+
+ * ✅ Get/Set:
+ * rest.get('name');         // 'Italiano'
+ * rest.set([1, 2], 'Test'); // Only works if same array reference
+
+ * ✅ Useful Methods:
+ * rest.has('name');    // true
+ * rest.delete(1);      // removes key 1
+ * rest.clear();        // clears all
+ * rest.size;           // number of entries
+
+ * ✅ Keys can be any type: string, number, boolean, object, array
+
+ * ✅ Iterate:
+ * for (const [key, val] of rest) console.log(key, val);
+
+ * ✅ Map vs Object:
+ * - Map keeps order, keys of any type, easier to iterate.
+ */
