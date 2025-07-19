@@ -72,3 +72,124 @@ Length of extracted string = end - start
 String methods always return primitives
 Case sensitivity matters in search methods
  */
+
+// # JavaScript String Methods - Part 2
+
+// ## Case Conversion Methods
+```javascript
+const airline = 'TAP Air Portugal';
+
+// Convert to lowercase/uppercase
+airline.toLowerCase(); // 'tap air portugal'
+airline.toUpperCase(); // 'TAP AIR PORTUGAL'
+
+// Can call directly on strings
+'Hello World'.toLowerCase(); // 'hello world'
+```// ## Practical Example - Fix Passenger Name
+```javascript
+const passenger = 'jOnAS'; // Wrong capitalization
+
+// Step-by-step approach
+const passengerLower = passenger.toLowerCase(); // 'jonas'
+const passengerCorrect = passengerLower[0].toUpperCase() + passengerLower.slice(1);
+// Result: 'Jonas'
+```// ## Email Validation Example
+```javascript
+const email = 'hello@jonas.io';
+const loginEmail = '  Hello@Jonas.Io \n'; // User input with errors
+
+// Method 1: Step by step
+const lowerEmail = loginEmail.toLowerCase();
+const trimmedEmail = lowerEmail.trim();
+
+// Method 2: Method chaining (preferred)
+const normalizedEmail = loginEmail.toLowerCase().trim();
+// Result: 'hello@jonas.io'
+
+// Compare emails
+console.log(email === normalizedEmail); // true
+```// ## Trim Methods
+```javascript
+const str = '   hello world   \n';
+
+str.trim();      // 'hello world' (removes whitespace from both ends)
+str.trimStart(); // 'hello world   \n' (ES2019 - removes from start only)
+str.trimEnd();   // '   hello world' (ES2019 - removes from end only)
+```// ## Replace Methods
+```javascript
+const priceGB = '288,97£';
+
+// Single replacement (first occurrence only)
+const priceUS = priceGB.replace('£', '$').replace(',', '.');
+// Result: '288.97$'
+
+// Replace words
+const announcement = 'All passengers come to boarding door 23. Boarding door 23.';
+announcement.replace('door', 'gate'); 
+// Result: 'All passengers come to boarding gate 23. Boarding door 23.'
+
+// Replace ALL occurrences
+announcement.replaceAll('door', 'gate');
+// Result: 'All passengers come to boarding gate 23. Boarding gate 23.'
+
+// Alternative with Regular Expression (before replaceAll existed)
+announcement.replace(/door/g, 'gate'); // 'g' flag = global (all occurrences)
+```// ## Boolean Methods
+```javascript
+const plane = 'A320neo';
+
+// includes() - check if string contains substring
+plane.includes('A320'); // true
+plane.includes('Boeing'); // false
+
+// startsWith() - check if string starts with substring
+plane.startsWith('Airbus'); // false
+plane.startsWith('A320'); // true
+
+// endsWith() - check if string ends with substring
+plane.endsWith('neo'); // true
+plane.endsWith('A320'); // false
+
+// Practical example
+if (plane.startsWith('Airbus') && plane.endsWith('neo')) {
+    console.log('Part of the NEW Airbus family');
+}
+```// ## Practical Example - Baggage Check
+```javascript
+function checkBaggage(items) {
+    // Always convert to lowercase for consistent comparison
+    const baggage = items.toLowerCase();
+    
+    if (baggage.includes('knife') || baggage.includes('gun')) {
+        console.log('You are not allowed on board');
+    } else {
+        console.log('Welcome aboard');
+    }
+}
+
+checkBaggage('I have a laptop, some food, and a pocket Knife'); // Not allowed
+checkBaggage('I have some socks and a camera'); // Welcome aboard  
+checkBaggage('Got some snacks and a gun for protection'); // Not allowed
+```;
+
+// ## Key Points
+
+// ### Method Chaining
+// - String methods return new strings, so you can chain them
+// - Example: `str.toLowerCase().trim().replace('old', 'new')`
+
+// ### Case Sensitivity
+// - All string methods are **case-sensitive**
+// - Always convert to lowercase when comparing user input
+// - Prevents issues with different capitalizations
+
+// ### String Immutability
+// - All methods return **new strings**
+// - Original strings are never modified
+// - Store results in variables or chain methods
+
+// ### Best Practices
+// - Always normalize user input (toLowerCase + trim)
+// - Use `replaceAll()` for multiple replacements
+// - Use boolean methods (`includes`, `startsWith`, `endsWith`) for conditionals
+// - Chain methods for cleaner code
