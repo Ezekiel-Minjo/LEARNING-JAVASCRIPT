@@ -1,0 +1,21 @@
+START
+  PRINT "Calculate Surface Area of a Cylinder"
+  
+  PROMPT user to enter the radius
+  READ radius
+  IF radius <= 0 THEN
+    PRINT "Error: Radius must be a positive number"
+    STOP
+  ENDIF
+  
+  PROMPT user to enter the height
+  READ height
+  IF height <= 0 THEN
+    PRINT "Error: Height must be a positive number"
+    STOP
+  ENDIF
+  
+  COMPUTE surface_area = 2 * π * radius^2 + 2 * π * radius * height
+  
+  PRINT "Surface Area of the Cylinder is: ", surface_area
+END
