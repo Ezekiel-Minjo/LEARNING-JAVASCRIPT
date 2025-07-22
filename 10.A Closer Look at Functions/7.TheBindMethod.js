@@ -60,4 +60,10 @@ lufthansa.buyPlane = function () {
   console.log(this.planes);
 };
 
-// document.querySelector(".buy").addEventListener("click", lufthansa.buyPlane);
+// document
+//   .querySelector(".buy")
+//   .addEventListener("click", lufthansa.buyPlane.bind(lufthansa));
+
+// Partial application
+const addTax = (rate, value) => value + value * rate;
+console.log(addTax(0.1, 200));
