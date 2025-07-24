@@ -79,8 +79,17 @@ const displayMovement = function (movements) {
 };
 displayMovement(account1.movements);
 
-// console.log(containerMovements.innerHTML);
-
+const createUsernames = function (accs) {
+  accs.forEach(function (acc) {
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(' ')
+      .map(name => name[0])
+      .join('');
+  });
+};
+createUsernames(accounts);
+console.log(accounts);
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -94,6 +103,3 @@ const currencies = new Map([
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
-let arr = ['a', 'b', 'c', 'd', 'e'];
-
-console.log(arr.slice(2));
