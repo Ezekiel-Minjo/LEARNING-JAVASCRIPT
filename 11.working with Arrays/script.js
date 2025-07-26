@@ -177,7 +177,12 @@ btnLoan.addEventListener('click', function (e) {
   const amount = Number(inputLoanAmount.value);
 
   if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
+    // Add movements
+    currentAccount.movements.push(amount);
+    // update UI
+    updateUI(currentAccount);
   }
+  inputLoanAmount.value = '';
 });
 
 btnClose.addEventListener('click', function (e) {

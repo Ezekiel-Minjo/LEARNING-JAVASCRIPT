@@ -17,3 +17,12 @@ console.log(
 // some checks for condition
 const anyDeposits = movements.some(mov => mov > 5000);
 console.log(anyDeposits);
+
+// every
+console.log(movements.every(mov => mov > 0));
+
+// separate callback
+const deposit = mov => mov > 0;
+console.log(movements.some(deposit));
+console.log(movements.every(deposit));
+console.log(movements.filter(deposit));
