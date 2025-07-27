@@ -62,9 +62,11 @@ const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
 // display movements: [200, 450, -400, 3000, -650, -130, 70, 1300]
-const displayMovement = function (movements) {
+const displayMovement = function (movements, sort = false) {
   containerMovements.innerHTML = '';
-  movements.forEach(function (mov, i) {
+
+  const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
+  movs.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
     const html = `
     <div class="movements__row">
@@ -204,6 +206,14 @@ btnClose.addEventListener('click', function (e) {
   }
   inputCloseUsername.value = inputClosePin.value = '';
 });
+
+let sorted = false;
+
+btnSort.addEventListener('click', function (e) {
+  e.preventDefault();
+  displayMovement(currentAccount.movements, !sorted);
+  sorted = !sorted;
+});
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -230,3 +240,23 @@ const overalBalance1 = accounts
   .flat()
   .reduce((acc, mov) => acc + mov, 0);
 console.log(overalBalance1);
+
+// sort
+const owners = ['Jonas', 'Zach', 'Adam', 'Martha'];
+console.log(owners.sort());
+console.log(movements);
+// return < 0, a before b(keep order)******* return > 0 B before A ()swutch order)
+// ASCENDING
+// movements.sort((a, b) => {
+//   if (a > b) return 1;
+//   if (a < b) return -1;
+// });
+movements.sort((a, b) => a - b);
+console.log(movements);
+// DESCENDING
+// movements.sort((a, b) => {
+//   if (a > b) return -1;
+//   if (a < b) return 1;
+// });
+movements.sort((a, b) => b - a);
+console.log(movements);
