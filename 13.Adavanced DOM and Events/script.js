@@ -29,6 +29,25 @@ document.addEventListener('keydown', function (e) {
     closeModal();
   }
 });
+// page navigation
+// document.querySelectorAll('.nav__link').forEach(function (el) {
+//   el.addEventListener('click', function (e) {
+//     e.preventDefault();
+//     const id = this.getAttribute('href');
+//     console.log(id);
+//     document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+//   });
+// });
+// event delegation
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+  e.preventDefault();
+  if (e.target.classList.contains('nav__link')) {
+    const id = e.target.getAttribute('href');
+    console.log(id);
+    document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+  }
+});
+
 // lecture
 // Selecting elements
 const header = document.querySelector('.header');
@@ -73,17 +92,41 @@ logo.setAttribute('company', 'Bankist');
 const btnScrollTo = document.querySelector('.btn--scroll-to');
 const section1 = document.querySelector('#section--1');
 
-btnScrollTo.addEventListener('click', function (e) {
-  const s1coords = section1.getBoundingClientRect();
-  //   console.log(s1coords);
-  //   console.log(e.target.getBoundingClientRect());
-  //   console.log('current scroll (x/y', window.pageXOffset, pageYOffset);
+// btnScrollTo.addEventListener('click', function (e) {
+//   const s1coords = section1.getBoundingClientRect();
+//   section1.scrollIntoView({ behavior: 'smooth' }); // smooth scrolling
+// });
 
-  //   window.scrollTo({
-  //     left: s1coords.left + window.pageXOffset,
-  //     top: s1coords.top + window.pageYOffset,
-  //     behavior: 'smooth',
-  //   });
+// types of events and events handlers
+// const h1 = document.querySelector('h1');
+// const alertH1 = function (e) {
+//   alert('addEventListener: Great! you are reading the heading :D');
+//   //   h1.removeEventListener('mouseenter', alertH1);
+// };
+// h1.addEventListener('mouseenter', alertH1);
+// setTimeout(() => h1.removeEventListener('mouseenter', alertH1), 3000);
 
-  section1.scrollIntoView({ behavior: 'smooth' }); // smooth scrolling
-});
+// h1.onmouseenter = function (e) {
+//   alert('addEventListener: Great! you are reading the heading :D');
+// };
+// rgb(255, 255, 255)
+// const randimInt = (min, max) =>
+//   Math.floor(Math.random() * (max - min + 1) + min);
+// const randomColor = () =>
+//   `rgb(${randimInt(0, 255)}, ${randimInt(0, 255)}, ${randimInt(0, 255)})`;
+
+// document.querySelector('.nav__link').addEventListener('click', function (e) {
+//   this.style.backgroundColor = randomColor();
+//   console.log('LINK', e.target);
+//   //   e.stopPropagation();
+// });
+
+// document.querySelector('.nav__links').addEventListener('click', function (e) {
+//   this.style.backgroundColor = randomColor();
+//   //   console.log('CONTAINER', e.target);
+// });
+
+// document.querySelector('.nav').addEventListener('click', function (e) {
+//   this.style.backgroundColor = randomColor();
+//   //   console.log('NAV', e.target);
+// });
