@@ -92,10 +92,10 @@ logo.setAttribute('company', 'Bankist');
 const btnScrollTo = document.querySelector('.btn--scroll-to');
 const section1 = document.querySelector('#section--1');
 
-// btnScrollTo.addEventListener('click', function (e) {
-//   const s1coords = section1.getBoundingClientRect();
-//   section1.scrollIntoView({ behavior: 'smooth' }); // smooth scrolling
-// });
+btnScrollTo.addEventListener('click', function (e) {
+  const s1coords = section1.getBoundingClientRect();
+  section1.scrollIntoView({ behavior: 'smooth' }); // smooth scrolling
+});
 
 // types of events and events handlers
 // const h1 = document.querySelector('h1');
@@ -130,3 +130,23 @@ const section1 = document.querySelector('#section--1');
 //   this.style.backgroundColor = randomColor();
 //   //   console.log('NAV', e.target);
 // });
+const h1 = document.querySelector('h1');
+console.log(h1.querySelectorAll('.highlight'));
+console.log(h1.childNodes);
+console.log(h1.children);
+h1.firstElementChild.style.color = 'white';
+h1.lastElementChild.style.color = 'orangered';
+// up: parents
+console.log(h1.parentNode);
+console.log(h1.parentElement);
+
+h1.closest('.header').style.background = 'var(--gradient-secondary)';
+
+// siblings
+console.log(h1.previousElementSibling);
+console.log(h1.nextElementSibling);
+
+console.log(h1.previousSibling);
+console.log(h1.nextSibling);
+
+console.log(h1.parentElement.children);
