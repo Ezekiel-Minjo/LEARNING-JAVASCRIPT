@@ -7,6 +7,16 @@ const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
+const nav = document.querySelector('.nav');
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
+const tabsContainer = document.querySelector('.operations__tab-container'); // div container
+const tabs = document.querySelectorAll('.operations__tab'); //buttons
+const tabsContent = document.querySelectorAll('.operations__content'); //contents
+const header = document.querySelector('.header');
+const allSection = document.querySelectorAll('.section');
+const allButtons = document.getElementsByTagName('button');
+const logo = document.querySelector('.nav__logo');
 
 const openModal = function (e) {
   e.preventDefault();
@@ -29,6 +39,12 @@ document.addEventListener('keydown', function (e) {
     closeModal();
   }
 });
+
+// smooth scrolling
+btnScrollTo.addEventListener('click', function (e) {
+  const s1coords = section1.getBoundingClientRect();
+  section1.scrollIntoView({ behavior: 'smooth' }); // smooth scrolling
+});
 // page navigation
 // document.querySelectorAll('.nav__link').forEach(function (el) {
 //   el.addEventListener('click', function (e) {
@@ -49,9 +65,6 @@ document.querySelector('.nav__links').addEventListener('click', function (e) {
 });
 
 // tabbed component
-const tabsContainer = document.querySelector('.operations__tab-container'); // div container
-const tabs = document.querySelectorAll('.operations__tab'); //buttons
-const tabsContent = document.querySelectorAll('.operations__content'); //contents
 
 tabsContainer.addEventListener('click', function (e) {
   const clicked = e.target.closest('.operations__tab');
@@ -69,54 +82,58 @@ tabsContainer.addEventListener('click', function (e) {
     .classList.add('operations__content--active');
 });
 
+// refactoring
+const handleHover = function (e, opacity) {
+  if (e.target.classList.contains('nav__link')) {
+    const link = e.target;
+    const siblings = link.closest('.nav').querySelectorAll('.nav__link'); //4 items
+    const logo = link.closest('.nav').querySelector('img');
+    siblings.forEach(el => {
+      if (el !== link) el.style.opacity = this;
+    });
+    logo.style.opacity = this;
+  }
+};
+
+// pasing arguments to event handlers => menu fade animation
+nav.addEventListener('mouseover', handleHover.bind(0.5));
+
+nav.addEventListener('mouseout', handleHover.bind(1));
 // lecture
 // Selecting elements
-const header = document.querySelector('.header');
-const allSection = document.querySelectorAll('.section');
-// console.log(allSection);
 
-const allButtons = document.getElementsByTagName('button');
 // console.log(allButtons);
 
 // creating and insert elements
-const message = document.createElement('div');
-message.classList.add('cookie-message');
-message.innerHTML = `We use cookies for improved functionality and analytics. <button class='btn btn--close-cookie'>Got it!</button>`;
+// const message = document.createElement('div');
+// message.classList.add('cookie-message');
+// message.innerHTML = `We use cookies for improved functionality and analytics. <button class='btn btn--close-cookie'>Got it!</button>`;
 // header.prepend(message);
-header.append(message);
+// header.append(message);
 // header.append(message.cloneNode(true));
 // header.before(message);
 // header.after(message);
 
 // Delete elements
-document
-  .querySelector('.btn--close-cookie')
-  .addEventListener('click', function () {
-    message.remove();
-  });
+// document
+//   .querySelector('.btn--close-cookie')
+//   .addEventListener('click', function () {
+//     message.remove();
+//   });
 
 //   styles
-message.style.backgroundColor = '#37383d';
-message.style.width = '120%';
-message.style.height =
-  Number.parseFloat(getComputedStyle(message).height, 10) + 30 + 'px';
+// message.style.backgroundColor = '#37383d';
+// message.style.width = '120%';
+// message.style.height =
+//   Number.parseFloat(getComputedStyle(message).height, 10) + 30 + 'px';
 
 // document.documentElement.style.setProperty('--color-primary', 'orangered');
 
 // attributes
-const logo = document.querySelector('.nav__logo');
-logo.alt = 'Beautiful minimalist logo';
-logo.setAttribute('company', 'Bankist');
+// logo.alt = 'Beautiful minimalist logo';
+// logo.setAttribute('company', 'Bankist');
 
 // data attributes
-// smooth scrolling
-const btnScrollTo = document.querySelector('.btn--scroll-to');
-const section1 = document.querySelector('#section--1');
-
-btnScrollTo.addEventListener('click', function (e) {
-  const s1coords = section1.getBoundingClientRect();
-  section1.scrollIntoView({ behavior: 'smooth' }); // smooth scrolling
-});
 
 // types of events and events handlers
 // const h1 = document.querySelector('h1');
