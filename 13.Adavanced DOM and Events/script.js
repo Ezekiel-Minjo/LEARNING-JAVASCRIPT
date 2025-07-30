@@ -48,14 +48,35 @@ document.querySelector('.nav__links').addEventListener('click', function (e) {
   }
 });
 
+// tabbed component
+const tabsContainer = document.querySelector('.operations__tab-container'); // div container
+const tabs = document.querySelectorAll('.operations__tab'); //buttons
+const tabsContent = document.querySelectorAll('.operations__content'); //contents
+
+tabsContainer.addEventListener('click', function (e) {
+  const clicked = e.target.closest('.operations__tab');
+  // Guard clause
+  if (!clicked) return;
+  // remeove active classes
+  tabs.forEach(t => t.classList.remove('operations__tab--active'));
+  tabsContent.forEach(c => c.classList.remove('operations__content--active'));
+
+  // active tab
+  clicked.classList.add('operations__tab--active');
+  // activate the content area
+  document
+    .querySelector(`.operations__content--${clicked.dataset.tab}`)
+    .classList.add('operations__content--active');
+});
+
 // lecture
 // Selecting elements
 const header = document.querySelector('.header');
 const allSection = document.querySelectorAll('.section');
-console.log(allSection);
+// console.log(allSection);
 
 const allButtons = document.getElementsByTagName('button');
-console.log(allButtons);
+// console.log(allButtons);
 
 // creating and insert elements
 const message = document.createElement('div');
@@ -130,23 +151,23 @@ btnScrollTo.addEventListener('click', function (e) {
 //   this.style.backgroundColor = randomColor();
 //   //   console.log('NAV', e.target);
 // });
-const h1 = document.querySelector('h1');
-console.log(h1.querySelectorAll('.highlight'));
-console.log(h1.childNodes);
-console.log(h1.children);
-h1.firstElementChild.style.color = 'white';
-h1.lastElementChild.style.color = 'orangered';
+// const h1 = document.querySelector('h1');
+// console.log(h1.querySelectorAll('.highlight'));
+// console.log(h1.childNodes);
+// console.log(h1.children);
+// h1.firstElementChild.style.color = 'white';
+// h1.lastElementChild.style.color = 'orangered';
 // up: parents
-console.log(h1.parentNode);
-console.log(h1.parentElement);
+// console.log(h1.parentNode);
+// console.log(h1.parentElement);
 
-h1.closest('.header').style.background = 'var(--gradient-secondary)';
+// h1.closest('.header').style.background = 'var(--gradient-secondary)';
 
 // siblings
-console.log(h1.previousElementSibling);
-console.log(h1.nextElementSibling);
+// console.log(h1.previousElementSibling);
+// console.log(h1.nextElementSibling);
 
-console.log(h1.previousSibling);
-console.log(h1.nextSibling);
+// console.log(h1.previousSibling);
+// console.log(h1.nextSibling);
 
-console.log(h1.parentElement.children);
+// console.log(h1.parentElement.children);
