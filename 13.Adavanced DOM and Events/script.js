@@ -1,5 +1,4 @@
 'use strict';
-//////////////////
 // Modal window
 
 const modal = document.querySelector('.modal');
@@ -44,16 +43,7 @@ btnScrollTo.addEventListener('click', function (e) {
   const s1coords = section1.getBoundingClientRect();
   section1.scrollIntoView({ behavior: 'smooth' }); // smooth scrolling
 });
-// page navigation
-// document.querySelectorAll('.nav__link').forEach(function (el) {
-//   el.addEventListener('click', function (e) {
-//     e.preventDefault();
-//     const id = this.getAttribute('href');
-//     console.log(id);
-//     document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
-//   });
-// });
-// event delegation
+
 document.querySelector('.nav__links').addEventListener('click', function (e) {
   e.preventDefault();
   if (e.target.classList.contains('nav__link')) {
@@ -137,11 +127,9 @@ allSections.forEach(function (section) {
 
 // lazzy loading images
 const imgTargets = document.querySelectorAll('img[data-src');
-console.log(imgTargets);
 
 const loadImage = function (entries, observer) {
   const [entry] = entries;
-  console.log(entry);
   if (!entry.isIntersecting) return;
   // replace src with data-src
   entry.target.src = entry.target.dataset.src;
@@ -158,114 +146,86 @@ const imgObserver = new IntersectionObserver(loadImage, {
 });
 
 imgTargets.forEach(img => imgObserver.observe(img));
-// const initialCoords = section1.getBoundingClientRect();
-// console.log(initialCoords);
 
-// window.addEventListener('scroll', function (e) {
-//   // console.log(window.scrollY);
-//   if (this.window.scrollY > initialCoords.top) nav.classList.add('sticky');
-//   else nav.classList.remove('sticky');
-// });
-// sticky navigation: Intersection observer API
-// const obsCallback = function (entries, observer) {
-//   entries.forEach(entry => {
-//     console.log(entry);
-//   });
-// };
-// const obsOptions = {
-//   root: null,
-//   threshold: [0, 0.2],
-// };
-// const observer = new IntersectionObserver(obsCallback, obsOptions);
-// observer.observe(section1);
-// const header = document.querySelector('.header');
+// slider component
+const slider = function () {
+  const slides = document.querySelectorAll('.slide');
+  const btnLeft = document.querySelector('.slider__btn--left');
+  const btnRight = document.querySelector('.slider__btn--right');
+  const dotContainer = document.querySelector('.dots');
 
-// lecture
-// Selecting elements
+  let curSlide = 0;
+  const maxSlide = slides.length;
 
-// console.log(allButtons);
+  // functions
+  const createDots = function () {
+    slides.forEach(function (_, i) {
+      dotContainer.insertAdjacentHTML(
+        'beforeend',
+        `<button class="dots__dot" data-slide="${i}"></button>`
+      );
+    });
+  };
 
-// creating and insert elements
-// const message = document.createElement('div');
-// message.classList.add('cookie-message');
-// message.innerHTML = `We use cookies for improved functionality and analytics. <button class='btn btn--close-cookie'>Got it!</button>`;
-// header.prepend(message);
-// header.append(message);
-// header.append(message.cloneNode(true));
-// header.before(message);
-// header.after(message);
+  const activateDot = function (slide) {
+    document
+      .querySelectorAll('.dots__dot')
+      .forEach(dot => dot.classList.remove('dots__dot--active'));
 
-// Delete elements
-// document
-//   .querySelector('.btn--close-cookie')
-//   .addEventListener('click', function () {
-//     message.remove();
-//   });
+    document
+      .querySelector(`.dots__dot[data-slide ="${slide}"]`)
+      .classList.add('dots__dot--active');
+  };
 
-//   styles
-// message.style.backgroundColor = '#37383d';
-// message.style.width = '120%';
-// message.style.height =
-//   Number.parseFloat(getComputedStyle(message).height, 10) + 30 + 'px';
+  const goToSlide = function (slide) {
+    slides.forEach(
+      (s, i) => (s.style.transform = `translateX(${100 * (i - slide)}%)`)
+    );
+  };
 
-// document.documentElement.style.setProperty('--color-primary', 'orangered');
+  const nextSlide = function () {
+    if (curSlide === maxSlide - 1) {
+      curSlide = 0;
+    } else {
+      curSlide++;
+    }
+    goToSlide(curSlide);
+    activateDot(curSlide);
+  };
 
-// attributes
-// logo.alt = 'Beautiful minimalist logo';
-// logo.setAttribute('company', 'Bankist');
+  const prevSlide = function () {
+    if (curSlide === 0) {
+      curSlide = maxSlide - 1;
+    } else {
+      curSlide--;
+    }
+    goToSlide(curSlide);
+    activateDot(curSlide);
+  };
 
-// data attributes
+  // init
+  const init = function () {
+    goToSlide(0);
+    createDots();
+    activateDot(0);
+  };
+  init();
 
-// types of events and events handlers
-// const h1 = document.querySelector('h1');
-// const alertH1 = function (e) {
-//   alert('addEventListener: Great! you are reading the heading :D');
-//   //   h1.removeEventListener('mouseenter', alertH1);
-// };
-// h1.addEventListener('mouseenter', alertH1);
-// setTimeout(() => h1.removeEventListener('mouseenter', alertH1), 3000);
+  // Event handlers
+  btnRight.addEventListener('click', nextSlide);
+  btnLeft.addEventListener('click', prevSlide);
 
-// h1.onmouseenter = function (e) {
-//   alert('addEventListener: Great! you are reading the heading :D');
-// };
-// rgb(255, 255, 255)
-// const randimInt = (min, max) =>
-//   Math.floor(Math.random() * (max - min + 1) + min);
-// const randomColor = () =>
-//   `rgb(${randimInt(0, 255)}, ${randimInt(0, 255)}, ${randimInt(0, 255)})`;
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowRight') prevSlide();
+    e.key === 'ArrowLeft' && nextSlide();
+  });
 
-// document.querySelector('.nav__link').addEventListener('click', function (e) {
-//   this.style.backgroundColor = randomColor();
-//   console.log('LINK', e.target);
-//   //   e.stopPropagation();
-// });
-
-// document.querySelector('.nav__links').addEventListener('click', function (e) {
-//   this.style.backgroundColor = randomColor();
-//   //   console.log('CONTAINER', e.target);
-// });
-
-// document.querySelector('.nav').addEventListener('click', function (e) {
-//   this.style.backgroundColor = randomColor();
-//   //   console.log('NAV', e.target);
-// });
-// const h1 = document.querySelector('h1');
-// console.log(h1.querySelectorAll('.highlight'));
-// console.log(h1.childNodes);
-// console.log(h1.children);
-// h1.firstElementChild.style.color = 'white';
-// h1.lastElementChild.style.color = 'orangered';
-// up: parents
-// console.log(h1.parentNode);
-// console.log(h1.parentElement);
-
-// h1.closest('.header').style.background = 'var(--gradient-secondary)';
-
-// siblings
-// console.log(h1.previousElementSibling);
-// console.log(h1.nextElementSibling);
-
-// console.log(h1.previousSibling);
-// console.log(h1.nextSibling);
-
-// console.log(h1.parentElement.children);
+  dotContainer.addEventListener('click', function (e) {
+    if (e.target.classList.contains('dots__dot')) {
+      const { slide } = e.target.dataset;
+      goToSlide(slide);
+      activateDot(slide);
+    }
+  });
+};
+slider();
