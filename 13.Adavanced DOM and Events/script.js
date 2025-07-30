@@ -14,7 +14,7 @@ const tabsContainer = document.querySelector('.operations__tab-container'); // d
 const tabs = document.querySelectorAll('.operations__tab'); //buttons
 const tabsContent = document.querySelectorAll('.operations__content'); //contents
 const header = document.querySelector('.header');
-const allSection = document.querySelectorAll('.section');
+const allSections = document.querySelectorAll('.section');
 const allButtons = document.getElementsByTagName('button');
 const logo = document.querySelector('.nav__logo');
 
@@ -114,6 +114,29 @@ const headerObserver = new IntersectionObserver(stickyNav, {
   rootMargin: `-${navHeight}px`,
 });
 headerObserver.observe(header);
+
+// Reveal sections
+const revealSection = function (entries, observer) {
+  console.log(entries);
+  const [entry] = entries;
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+
+    entry.target.classList.remove('section--hidden');
+    observer.unobserve(entry.target);
+  });
+};
+
+const sectionObserver = new IntersectionObserver(revealSection, {
+  root: null,
+  threshold: 0.15,
+});
+
+allSections.forEach(function (section) {
+  sectionObserver.observe(section);
+  section.classList.add('section--hidden');
+});
+
 // const initialCoords = section1.getBoundingClientRect();
 // console.log(initialCoords);
 
