@@ -1,6 +1,5 @@
 'use strict';
-
-///////////////////////////////////////
+//////////////////
 // Modal window
 
 const modal = document.querySelector('.modal');
@@ -117,7 +116,6 @@ headerObserver.observe(header);
 
 // Reveal sections
 const revealSection = function (entries, observer) {
-  console.log(entries);
   const [entry] = entries;
   entries.forEach(entry => {
     if (!entry.isIntersecting) return;
@@ -137,6 +135,29 @@ allSections.forEach(function (section) {
   section.classList.add('section--hidden');
 });
 
+// lazzy loading images
+const imgTargets = document.querySelectorAll('img[data-src');
+console.log(imgTargets);
+
+const loadImage = function (entries, observer) {
+  const [entry] = entries;
+  console.log(entry);
+  if (!entry.isIntersecting) return;
+  // replace src with data-src
+  entry.target.src = entry.target.dataset.src;
+
+  entry.target.addEventListener('load', function () {
+    entry.target.classList.remove('lazy-img');
+  });
+};
+
+const imgObserver = new IntersectionObserver(loadImage, {
+  root: null,
+  threshold: 0,
+  rootMargin: '200px',
+});
+
+imgTargets.forEach(img => imgObserver.observe(img));
 // const initialCoords = section1.getBoundingClientRect();
 // console.log(initialCoords);
 
