@@ -30,3 +30,19 @@ Person.prototype.species = 'Home Sapiens';
 console.log(jonas.species, matilda.species, jack.species);
 
 console.log(jonas.hasOwnProperty('firstName')); // checking for objects own property
+// object.prototype
+console.log(jonas.__proto__.__proto__);
+console.log(jonas.__proto__.__proto__.__proto__);
+
+console.log(Person.prototype.constructor);
+
+const arr = [3, 6, 4, 5, 6, 9, 9];
+console.log(arr.__proto__);
+console.log(arr.__proto__ === Array.prototype);
+console.log(arr.__proto__.__proto__);
+
+Array.prototype.unique = function () {
+  return [...new Set(this)];
+};
+console.log(arr.unique());
+const h1 = document.querySelector('h1');
