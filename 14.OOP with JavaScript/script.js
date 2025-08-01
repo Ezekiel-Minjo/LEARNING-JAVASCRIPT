@@ -11,6 +11,12 @@ const jack = new Person('Jack', 1975); // instance of Person
 console.log(jonas, matilda, jack);
 console.log(jonas instanceof Person);
 
+// add static method
+Person.hey = function () {
+  console.log('Hey there 👋');
+};
+Person.hey();
+
 // 2. prototypes
 console.log(Person.prototype);
 Person.prototype.calcAge = function () {
@@ -46,3 +52,85 @@ Array.prototype.unique = function () {
 };
 console.log(arr.unique());
 const h1 = document.querySelector('h1');
+
+// ES6 CLASSES
+// class expression
+// const PersonCl = class {};
+
+// class declaration
+class PersonCl {
+  constructor(fullName, birthYear) {
+    this.fullName = fullName;
+    this.birthYear = birthYear;
+  }
+
+  //   methods will be added to prototypr property
+  calcAge() {
+    console.log(2037 - this.birthYear);
+  }
+
+  greet() {
+    console.log(`Hey ${this.fullName}`);
+  }
+
+  get age() {
+    return 2037 - this.birthYear;
+  }
+
+  set fullName(name) {
+    console.log(name);
+    if (name.includes(' ')) this._fullName = name;
+    else alert(`${name} is not full name`);
+  }
+
+  get fullName() {
+    return this._fullName;
+  }
+
+  //   static method
+  static hey() {
+    console.log('Hey there 👋');
+  }
+}
+const jessica = new PersonCl('Jessica Davis', 1996);
+console.log(jessica);
+jessica.calcAge();
+console.log(jessica.age);
+PersonCl.hey();
+jessica.greet();
+
+const account = {
+  owner: 'jonas',
+  movements: [200, 530, 120, 300],
+
+  get latest() {
+    return this.movements.slice(-1).pop();
+  },
+
+  set latest(mov) {
+    this.movements.push(mov);
+  },
+};
+console.log(account.latest);
+
+account.latest = 50;
+console.log(account.movements);
+
+// Object.create
+const PersonProto = {
+  calcAge() {
+    console.log(2037 - this.birthYear);
+  },
+
+  init(firstName, birthYear) {
+    (this.firstName = firstName), (this.birthYear = birthYear);
+  },
+};
+
+const Steven = Object.create(PersonProto);
+Steven.init('Steven', 2002);
+Steven.calcAge();
+
+const sarah = Object.create(PersonProto);
+sarah.init('Sarah', 1979);
+sarah.calcAge();
