@@ -255,3 +255,110 @@ const jay = Object.create(StudentProto);
 jay.init('Jay', 2010, 'Computer Science');
 jay.introduce();
 jay.calcAge();
+
+// console.log('======BANKIST======');
+// // 1. public fields
+// // 2. private fields
+// // 3. public methods
+// // 4. private methods
+// // 5. static version of these 4
+// class Account {
+//   constructor(owner, currency, pin) {
+//     this.owner = owner;
+//     this.currency = currency;
+//     this.pin = pin;
+//     this.movements = [];
+//     this.locale = navigator.language;
+
+//     console.log(`Thanks for opening an account, ${owner} `);
+//   }
+//   // Public Interface
+//   deposit(val) {
+//     this.movements.push(val);
+//   }
+
+//   withdraw(val) {
+//     this.deposit(-val);
+//   }
+
+//   approveLoan(val) {
+//     return true;
+//   }
+
+//   requestLoan(val) {
+//     if (this.approveLoan(val)) {
+//       this.deposit(val);
+//       console.log(`Loan approved!`);
+//     }
+//   }
+// }
+
+// const acc1 = new Account('Jonas', 'EUR', 111);
+// console.log(acc1);
+// acc1.deposit(250);
+// acc1.withdraw(140);
+// acc1.requestLoan(1000);
+// console.log(acc1);
+
+console.log('========================Encapsulations==================');
+// 1. public fields: declared at the begging of a class
+// 2. private fields: use #
+// 3. public methods:
+// 4. private methods: use #
+// 5. static version of these 4
+class Account {
+  // 1. public fields
+  locale = navigator.language;
+  bank = 'Bankist';
+  // 2. private fields
+  #movements = [];
+  #pin;
+
+  constructor(owner, currency, pin) {
+    this.owner = owner;
+    this.currency = currency;
+    this.#pin = pin;
+    // this.movements = [];
+    // this.locale = navigator.language;
+
+    console.log(`Thanks for opening an account, ${owner} `);
+  }
+  // Public Interface(API)
+  getMovements() {
+    return this.#movements;
+  }
+  deposit(val) {
+    this.#movements.push(val);
+    return this;
+  }
+
+  withdraw(val) {
+    this.deposit(-val);
+    return this;
+  }
+
+  // 4. private methods
+  #approveLoan(val) {
+    // fake method
+    return true;
+  }
+
+  requestLoan(val) {
+    if (this.#approveLoan(val)) {
+      this.deposit(val);
+      console.log(`Loan approved!`);
+    }
+    return this;
+  }
+}
+
+const acc1 = new Account('Jonas', 'EUR', 111);
+const cashFlow = acc1
+  .deposit(250)
+  .withdraw(140)
+  .withdraw(50)
+  .requestLoan(25000)
+  .withdraw(4000)
+  .getMovements();
+console.log(acc1);
+console.log(cashFlow);
