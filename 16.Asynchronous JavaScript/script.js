@@ -328,18 +328,37 @@ const whereAmI = async function () {
     const resGeo = await fetch(
       `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}`
     );
+    if (!resGeo.ok) throw new Error('Problem getting location data');
     const dataGeo = await resGeo.json();
-    console.log(dataGeo);
 
     //country data
     const res = await fetch(
       `https://restcountries.com/v2/name/${dataGeo.countryName}`
     );
+    if (!resGeo.ok) throw new Error('Problem getting country');
     const data = await res.json();
     renderCountry(data[0]);
+    return `You are in ${dataGeo.city}, ${dataGeo.countryName}`;
   } catch (err) {
-    console.error(err);
     renderError(`Something went wrong  ${err.message}`);
+    // reject promise returned form async function
+    throw err;
   }
 };
-whereAmI();
+
+// console.log('1: I will get location');
+// whereAmI()
+//   .then(city => console.log(city))
+//   .catch(err => console.error(`2: ${err.message}`))
+//   .finally(() => console.log('3: Finished getting location'));
+
+// return data from async function
+(async function () {
+  try {
+    const city = await whereAmI();
+    // console.log(`2: ${city}`);
+  } catch (err) {
+    // console.error(`2: ${err.message}`);
+  }
+  console.log('3: Finished getting location');
+})();
